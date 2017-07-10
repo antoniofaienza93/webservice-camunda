@@ -1,0 +1,118 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>org.camunda.bpm.soseng</groupId>
+  <artifactId>soseng</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <packaging>war</packaging>
+  
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+  </properties>
+  
+   <!-- import Camunda BOM to ensure correct versions of Camunda projects -->
+  <dependencyManagement>
+    <dependencies>
+      <dependency>
+        <groupId>org.camunda.bpm</groupId>
+        <artifactId>camunda-bom</artifactId>
+        <version>7.7.0</version>
+        <scope>import</scope>
+        <type>pom</type>
+      </dependency>
+    </dependencies>
+  </dependencyManagement>
+	
+  <dependencies>
+    <!-- Camunda engine dependency -->
+    <dependency>
+      <groupId>org.camunda.bpm</groupId>
+      <artifactId>camunda-engine</artifactId>
+      <scope>provided</scope>
+    </dependency>
+
+	  <!-- Depency for JPA (Java Persistence API)  -->
+    <dependency>
+	   <groupId>javax.persistence</groupId>
+	   <artifactId>persistence-api</artifactId>
+	   <version>1.0.2</version>
+	   <scope>provided</scope>
+	</dependency>
+	
+	<!-- https://mvnrepository.com/artifact/xalan/xalan -->
+	<dependency>
+	    <groupId>xalan</groupId>
+	    <artifactId>xalan</artifactId>
+	    <version>2.7.1</version>
+	</dependency>
+	
+	
+    <!-- Camunda cdi beans -->
+    <dependency>
+      <groupId>org.camunda.bpm</groupId>
+      <artifactId>camunda-engine-cdi</artifactId>
+    </dependency>
+
+    <!-- provides a default EjbProcessApplication -->
+    <dependency>
+      <groupId>org.camunda.bpm.javaee</groupId>
+      <artifactId>camunda-ejb-client</artifactId>
+    </dependency>
+
+    <!-- Java EE 7 Specification -->
+    <dependency>
+      <groupId>org.jboss.spec</groupId>
+      <artifactId>jboss-javaee-7.0</artifactId>
+      <version>1.0.3.Final</version>
+      <type>pom</type>
+      <scope>provided</scope>
+      <exclusions>
+        <exclusion>
+          <artifactId>xalan</artifactId>
+          <groupId>xalan</groupId>
+        </exclusion>
+      </exclusions>
+    </dependency>   
+  </dependencies>
+
+  
+  
+  <build>
+  <finalName>soseng</finalName>
+  <plugins>
+  <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-war-plugin</artifactId>
+        <version>2.3</version>
+        <configuration>
+          <failOnMissingWebXml>false</failOnMissingWebXml>
+        </configuration>
+      </plugin>
+    <plugin>
+      <groupId>org.apache.cxf</groupId>
+      <artifactId>cxf-codegen-plugin</artifactId>
+      <version>2.5.2</version>
+      <executions>
+        <execution>
+          <id>generate-sources</id>
+          <phase>generate-sources</phase>
+          <configuration>
+            <sourceRoot>${project.build.directory}/generated/cxf</sourceRoot>
+            <wsdlOptions>
+              <wsdlOption>
+                <wsdl>${basedir}/src/main/resources/RicevutaRichiestaAcquirenteService.wsdl</wsdl>
+              </wsdlOption>
+              <wsdlOption>
+                <wsdl>${basedir}/src/main/resources/RispondiAdAcquirenteService.wsdl</wsdl>
+              </wsdlOption>
+            </wsdlOptions>
+          </configuration>
+          <goals>
+            <goal>wsdl2java</goal>
+          </goals>
+        </execution>
+      </executions>
+    </plugin>
+  </plugins>
+</build>
+
+</project>

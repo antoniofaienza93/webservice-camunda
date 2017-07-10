@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" id="Definitions_1" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="1.8.2">
+  <bpmn:message id="Message_123mzke" name="prova" />
+  <bpmn:message id="Message_0430rcv" name="Richiesta venditore ricevuta" />
+  <bpmn:message id="Message_16zrfyq" name="Richiesta acquirente ricevuta" />
+  <bpmn:message id="Message_1lyz2tp" name="Message_2mueeg4" />
+  <bpmn:message id="Message_0qk29bq" name="Message_21ue65n" />
+  <bpmn:message id="Message_1nge4t5" name="Message_0ptbv8h" />
+  <bpmn:message id="Message_1lv74jg" name="Message_1egc7vl" />
+  <bpmn:message id="Message_1iht3dw" name="Message_3303s3v" />
+  <bpmn:message id="Message_0xnsook" name="Message_0ako05p" />
+  <bpmn:message id="Message_0bdlwkm" name="Message_12uh5do" />
+  <bpmn:message id="Message_1plttis" name="Message_04f6ivn" />
+  <bpmn:message id="Message_0fd3a3m" name="Message_2269t37" />
+  <bpmn:message id="Message_183zc20" name="Message_1a475k2" />
+  <bpmn:message id="Message_02ftfvp" name="ricezione-richiesta-venditore" />
+  <bpmn:message id="Message_1np9o01" name="ricezione-richiesta-acquirente" />
+  <bpmn:message id="Message_0o06cm9" name="ricevuta-richiesta-cliente" />
+  <bpmn:process id="acme-processo-id" name="acme-processo" isExecutable="true">
+    <bpmn:startEvent id="StartEvent_0q8s67j" name="Iniizia Processo">
+      <bpmn:outgoing>SequenceFlow_0z69uyo</bpmn:outgoing>
+      <bpmn:messageEventDefinition messageRef="Message_1np9o01" />
+    </bpmn:startEvent>
+    <bpmn:userTask id="UserTask_071wrcp" name="Review&#10;" camunda:assignee="demo">
+      <bpmn:extensionElements>
+        <camunda:formData>
+          <camunda:formField id="richiesta" label="Review" type="string">
+            <camunda:validation>
+              <camunda:constraint name="readonly" />
+            </camunda:validation>
+          </camunda:formField>
+        </camunda:formData>
+      </bpmn:extensionElements>
+      <bpmn:incoming>SequenceFlow_0z69uyo</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_039h2pw</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:serviceTask id="ServiceTask_0fsoca2" name="Rispondi al cliente" camunda:class="org.camunda.bpmn.RispondiAdAcquirenteDelegate">
+      <bpmn:incoming>SequenceFlow_039h2pw</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_00j6gkz</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:endEvent id="EndEvent_1hm1pew">
+      <bpmn:incoming>SequenceFlow_00j6gkz</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:sequenceFlow id="SequenceFlow_0z69uyo" sourceRef="StartEvent_0q8s67j" targetRef="UserTask_071wrcp" />
+    <bpmn:sequenceFlow id="SequenceFlow_039h2pw" sourceRef="UserTask_071wrcp" targetRef="ServiceTask_0fsoca2" />
+    <bpmn:sequenceFlow id="SequenceFlow_00j6gkz" sourceRef="ServiceTask_0fsoca2" targetRef="EndEvent_1hm1pew" />
+  </bpmn:process>
+  <bpmn:message id="Message_17gka2x" name="Message_0ek506o" />
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="acme-processo-id">
+      <bpmndi:BPMNShape id="StartEvent_0q8s67j_di" bpmnElement="StartEvent_0q8s67j">
+        <dc:Bounds x="120" y="-1287" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="100" y="-1240" width="76" height="12" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="UserTask_071wrcp_di" bpmnElement="UserTask_071wrcp">
+        <dc:Bounds x="224" y="-1309" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="ServiceTask_0fsoca2_di" bpmnElement="ServiceTask_0fsoca2">
+        <dc:Bounds x="464" y="-1309" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="EndEvent_1hm1pew_di" bpmnElement="EndEvent_1hm1pew">
+        <dc:Bounds x="706" y="-1287" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="679" y="-1247" width="0" height="12" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="SequenceFlow_0z69uyo_di" bpmnElement="SequenceFlow_0z69uyo">
+        <di:waypoint xsi:type="dc:Point" x="156" y="-1269" />
+        <di:waypoint xsi:type="dc:Point" x="224" y="-1269" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="145" y="-1290" width="0" height="12" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="SequenceFlow_039h2pw_di" bpmnElement="SequenceFlow_039h2pw">
+        <di:waypoint xsi:type="dc:Point" x="324" y="-1269" />
+        <di:waypoint xsi:type="dc:Point" x="464" y="-1269" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="349" y="-1290" width="0" height="12" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="SequenceFlow_00j6gkz_di" bpmnElement="SequenceFlow_00j6gkz">
+        <di:waypoint xsi:type="dc:Point" x="564" y="-1269" />
+        <di:waypoint xsi:type="dc:Point" x="706" y="-1269" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="590" y="-1290" width="0" height="12" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>

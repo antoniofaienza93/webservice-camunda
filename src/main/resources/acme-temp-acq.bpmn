@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" id="Definitions_1" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="1.8.2">
+  <bpmn:message id="Message_123mzke" name="prova" />
+  <bpmn:message id="Message_0430rcv" name="Richiesta venditore ricevuta" />
+  <bpmn:message id="Message_16zrfyq" name="Richiesta acquirente ricevuta" />
+  <bpmn:message id="Message_1lyz2tp" name="Message_2mueeg4" />
+  <bpmn:message id="Message_0qk29bq" name="Message_21ue65n" />
+  <bpmn:message id="Message_1nge4t5" name="Message_0ptbv8h" />
+  <bpmn:message id="Message_1lv74jg" name="Message_1egc7vl" />
+  <bpmn:message id="Message_1iht3dw" name="Message_3303s3v" />
+  <bpmn:message id="Message_0xnsook" name="Message_0ako05p" />
+  <bpmn:message id="Message_0bdlwkm" name="Message_12uh5do" />
+  <bpmn:message id="Message_1plttis" name="Message_04f6ivn" />
+  <bpmn:message id="Message_0fd3a3m" name="Message_2269t37" />
+  <bpmn:message id="Message_183zc20" name="Message_1a475k2" />
+  <bpmn:message id="Message_0d1g1dr" name="Proposta Acquisto Immobile" />
+  <bpmn:message id="Message_0tni6cn" name="aspetto-risposta-acme" />
+  <bpmn:message id="Message_1sdk280" name="ricevuta-risp-acme" />
+  <bpmn:message id="Message_0gjc9r5" name="ricevuta-risp-acme" />
+  <bpmn:message id="Message_08r4es1" name="ricevo-risposta" />
+  <bpmn:process id="acquirente-processo-id" name="acquirente-processo" isExecutable="true">
+    <bpmn:startEvent id="StartEvent_09ka85n" name="Acquisto Immobile">
+      <bpmn:outgoing>SequenceFlow_0h01ty2</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:userTask id="UserTask_04kvtp1" name="Prova ad acquistare un immobile" camunda:formKey="embedded:app:forms/richiesta-appartamento.html" camunda:assignee="demo">
+      <bpmn:incoming>SequenceFlow_0h01ty2</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_1vp3g8r</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:serviceTask id="ServiceTask_0i976g8" name="Invio richiesta" camunda:class="org.camunda.bpmn.InvioRichiestaCasa">
+      <bpmn:incoming>SequenceFlow_1vp3g8r</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_1cqce5p</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:receiveTask id="risp-acme-id" name="Ricevo Mex Risposta" messageRef="Message_1l11l4r">
+      <bpmn:extensionElements>
+        <camunda:inputOutput>
+          <camunda:inputParameter name="prova" />
+        </camunda:inputOutput>
+      </bpmn:extensionElements>
+      <bpmn:incoming>SequenceFlow_1cqce5p</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_0s6mn7l</bpmn:outgoing>
+    </bpmn:receiveTask>
+    <bpmn:userTask id="UserTask_1hwawgw" name="Leggi la risposta" camunda:assignee="demo">
+      <bpmn:extensionElements>
+        <camunda:formData>
+          <camunda:formField id="ciao" label="cccc" type="string">
+            <camunda:validation>
+              <camunda:constraint name="readonly" />
+            </camunda:validation>
+          </camunda:formField>
+        </camunda:formData>
+      </bpmn:extensionElements>
+      <bpmn:incoming>SequenceFlow_0s6mn7l</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_1n1d70q</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:endEvent id="EndEvent_0qd4bim">
+      <bpmn:incoming>SequenceFlow_1n1d70q</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:sequenceFlow id="SequenceFlow_0h01ty2" sourceRef="StartEvent_09ka85n" targetRef="UserTask_04kvtp1" />
+    <bpmn:sequenceFlow id="SequenceFlow_1vp3g8r" sourceRef="UserTask_04kvtp1" targetRef="ServiceTask_0i976g8" />
+    <bpmn:sequenceFlow id="SequenceFlow_1cqce5p" sourceRef="ServiceTask_0i976g8" targetRef="risp-acme-id" />
+    <bpmn:sequenceFlow id="SequenceFlow_0s6mn7l" sourceRef="risp-acme-id" targetRef="UserTask_1hwawgw" />
+    <bpmn:sequenceFlow id="SequenceFlow_1n1d70q" sourceRef="UserTask_1hwawgw" targetRef="EndEvent_0qd4bim" />
+  </bpmn:process>
+  <bpmn:message id="Message_1l11l4r" name="ricevo-mex-risposta" />
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="acquirente-processo-id">
+      <bpmndi:BPMNShape id="StartEvent_09ka85n_di" bpmnElement="StartEvent_09ka85n">
+        <dc:Bounds x="428" y="-1402" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="414" y="-1354" width="88" height="12" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="UserTask_04kvtp1_di" bpmnElement="UserTask_04kvtp1">
+        <dc:Bounds x="575" y="-1424" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="ServiceTask_0i976g8_di" bpmnElement="ServiceTask_0i976g8">
+        <dc:Bounds x="754" y="-1424" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="ReceiveTask_07uof4l_di" bpmnElement="risp-acme-id">
+        <dc:Bounds x="914" y="-1424" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="UserTask_1hwawgw_di" bpmnElement="UserTask_1hwawgw">
+        <dc:Bounds x="1096" y="-1424" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="EndEvent_0qd4bim_di" bpmnElement="EndEvent_0qd4bim">
+        <dc:Bounds x="1252" y="-1402" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1225" y="-1362" width="0" height="12" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="SequenceFlow_0h01ty2_di" bpmnElement="SequenceFlow_0h01ty2">
+        <di:waypoint xsi:type="dc:Point" x="464" y="-1384" />
+        <di:waypoint xsi:type="dc:Point" x="575" y="-1384" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="475.5" y="-1405" width="0" height="12" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="SequenceFlow_1vp3g8r_di" bpmnElement="SequenceFlow_1vp3g8r">
+        <di:waypoint xsi:type="dc:Point" x="675" y="-1384" />
+        <di:waypoint xsi:type="dc:Point" x="754" y="-1384" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="670.5" y="-1405" width="0" height="12" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="SequenceFlow_1cqce5p_di" bpmnElement="SequenceFlow_1cqce5p">
+        <di:waypoint xsi:type="dc:Point" x="854" y="-1384" />
+        <di:waypoint xsi:type="dc:Point" x="914" y="-1384" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="839" y="-1405" width="0" height="12" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="SequenceFlow_0s6mn7l_di" bpmnElement="SequenceFlow_0s6mn7l">
+        <di:waypoint xsi:type="dc:Point" x="1014" y="-1384" />
+        <di:waypoint xsi:type="dc:Point" x="1096" y="-1384" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1010" y="-1405" width="0" height="12" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="SequenceFlow_1n1d70q_di" bpmnElement="SequenceFlow_1n1d70q">
+        <di:waypoint xsi:type="dc:Point" x="1196" y="-1384" />
+        <di:waypoint xsi:type="dc:Point" x="1252" y="-1384" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1179" y="-1405" width="0" height="12" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>

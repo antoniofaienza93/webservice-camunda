@@ -1,0 +1,57 @@
+<?xml version='1.0' encoding='UTF-8'?><wsdl:definitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://ame.webservice.camunda.org/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:ns1="http://schemas.xmlsoap.org/soap/http" name="RicevutaRichiestaAcquirenteService" targetNamespace="http://ame.webservice.camunda.org/">
+  <wsdl:types>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://ame.webservice.camunda.org/" elementFormDefault="unqualified" targetNamespace="http://ame.webservice.camunda.org/" version="1.0">
+
+  <xs:element name="invokeProcess" type="tns:invokeProcess"/>
+
+  <xs:element name="invokeProcessResponse" type="tns:invokeProcessResponse"/>
+
+  <xs:complexType name="invokeProcess">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="arg0" type="xs:string"/>
+      <xs:element minOccurs="0" name="arg1" type="xs:string"/>
+      <xs:element minOccurs="0" name="arg2" type="xs:string"/>
+      <xs:element minOccurs="0" name="richiesta" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="invokeProcessResponse">
+    <xs:sequence/>
+  </xs:complexType>
+
+</xs:schema>
+  </wsdl:types>
+  <wsdl:message name="invokeProcessResponse">
+    <wsdl:part element="tns:invokeProcessResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="invokeProcess">
+    <wsdl:part element="tns:invokeProcess" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="RicevutaRichiestaAcquirente">
+    <wsdl:operation name="invokeProcess">
+      <wsdl:input message="tns:invokeProcess" name="invokeProcess">
+    </wsdl:input>
+      <wsdl:output message="tns:invokeProcessResponse" name="invokeProcessResponse">
+    </wsdl:output>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="RicevutaRichiestaAcquirenteServiceSoapBinding" type="tns:RicevutaRichiestaAcquirente">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="invokeProcess">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="invokeProcess">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="invokeProcessResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="RicevutaRichiestaAcquirenteService">
+    <wsdl:port binding="tns:RicevutaRichiestaAcquirenteServiceSoapBinding" name="RicevutaRichiestaAcquirentePort">
+      <soap:address location="http://localhost:8080/soseng/RicevutaRichiestaAcquirente"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

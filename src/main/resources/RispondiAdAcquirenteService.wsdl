@@ -1,0 +1,201 @@
+<?xml version='1.0' encoding='UTF-8'?><wsdl:definitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://ame.webservice.camunda.org/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:ns1="http://schemas.xmlsoap.org/soap/http" name="RispondiAdAcquirenteService" targetNamespace="http://ame.webservice.camunda.org/">
+  <wsdl:types>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://ame.webservice.camunda.org/" attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="http://ame.webservice.camunda.org/">
+  <xs:element name="invokeProcessCallback" type="tns:invokeProcessCallback"/>
+  <xs:element name="invokeProcessCallbackResponse" type="tns:invokeProcessCallbackResponse"/>
+  <xs:element name="prova2" type="tns:prova2"/>
+  <xs:element name="prova2Response" type="tns:prova2Response"/>
+  <xs:element name="prova3" type="tns:prova3"/>
+  <xs:element name="prova3Response" type="tns:prova3Response"/>
+  <xs:element name="prova4" type="tns:prova4"/>
+  <xs:element name="prova4Response" type="tns:prova4Response"/>
+  <xs:element name="prova5" type="tns:prova5"/>
+  <xs:element name="prova5Response" type="tns:prova5Response"/>
+  <xs:complexType name="prova5">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="messaggio" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="prova5Response">
+    <xs:sequence/>
+  </xs:complexType>
+  <xs:complexType name="invokeProcessCallback">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="arg0" type="xs:string"/>
+      <xs:element minOccurs="0" name="arg1" type="xs:string"/>
+      <xs:element minOccurs="0" name="arg2" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="invokeProcessCallbackResponse">
+    <xs:sequence/>
+  </xs:complexType>
+  <xs:complexType name="prova4">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="messaggio" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="prova4Response">
+    <xs:sequence/>
+  </xs:complexType>
+  <xs:complexType name="prova3">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="processo" type="xs:string"/>
+      <xs:element minOccurs="0" name="id" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="prova3Response">
+    <xs:sequence/>
+  </xs:complexType>
+  <xs:complexType name="prova2">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="processoDaIniziare" type="xs:string"/>
+      <xs:element minOccurs="0" name="id" type="xs:string"/>
+      <xs:element minOccurs="0" name="messageName" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="prova2Response">
+    <xs:sequence/>
+  </xs:complexType>
+  <xs:element name="SOAPException" type="tns:SOAPException"/>
+  <xs:complexType name="SOAPException">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="message" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>
+  </wsdl:types>
+  <wsdl:message name="prova5">
+    <wsdl:part element="tns:prova5" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="prova4">
+    <wsdl:part element="tns:prova4" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="prova3Response">
+    <wsdl:part element="tns:prova3Response" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="SOAPException">
+    <wsdl:part element="tns:SOAPException" name="SOAPException">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="prova3">
+    <wsdl:part element="tns:prova3" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="prova4Response">
+    <wsdl:part element="tns:prova4Response" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="prova2">
+    <wsdl:part element="tns:prova2" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="prova5Response">
+    <wsdl:part element="tns:prova5Response" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="invokeProcessCallback">
+    <wsdl:part element="tns:invokeProcessCallback" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="prova2Response">
+    <wsdl:part element="tns:prova2Response" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="invokeProcessCallbackResponse">
+    <wsdl:part element="tns:invokeProcessCallbackResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="RispondiAdAcquirente">
+    <wsdl:operation name="prova5">
+      <wsdl:input message="tns:prova5" name="prova5">
+    </wsdl:input>
+      <wsdl:output message="tns:prova5Response" name="prova5Response">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="invokeProcessCallback">
+      <wsdl:input message="tns:invokeProcessCallback" name="invokeProcessCallback">
+    </wsdl:input>
+      <wsdl:output message="tns:invokeProcessCallbackResponse" name="invokeProcessCallbackResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:SOAPException" name="SOAPException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="prova4">
+      <wsdl:input message="tns:prova4" name="prova4">
+    </wsdl:input>
+      <wsdl:output message="tns:prova4Response" name="prova4Response">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="prova3">
+      <wsdl:input message="tns:prova3" name="prova3">
+    </wsdl:input>
+      <wsdl:output message="tns:prova3Response" name="prova3Response">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="prova2">
+      <wsdl:input message="tns:prova2" name="prova2">
+    </wsdl:input>
+      <wsdl:output message="tns:prova2Response" name="prova2Response">
+    </wsdl:output>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="RispondiAdAcquirenteServiceSoapBinding" type="tns:RispondiAdAcquirente">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="prova5">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="prova5">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="prova5Response">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="invokeProcessCallback">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="invokeProcessCallback">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="invokeProcessCallbackResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="SOAPException">
+        <soap:fault name="SOAPException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="prova4">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="prova4">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="prova4Response">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="prova3">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="prova3">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="prova3Response">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="prova2">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="prova2">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="prova2Response">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="RispondiAdAcquirenteService">
+    <wsdl:port binding="tns:RispondiAdAcquirenteServiceSoapBinding" name="RispondiAdAcquirentePort">
+      <soap:address location="http://localhost:8080/soseng/RispondiAdAcquirente"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
